@@ -1,0 +1,81 @@
+.bar-add-search {
+  padding: 0 40px;
+  border-bottom: 1px solid #f3f3f342;
+  display: flex;
+  justify-content: space-between;
+}
+
+.bar-add-search .add-search {
+  height: 48px;
+  margin: 0;
+  justify-content: left;
+  padding: 0;
+}
+
+.bar-add-search .add-search li {
+  list-style: none;
+  align-self: stretch;
+  margin-right: 50px;
+}
+
+.bar-add-search .add-search li a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  height: 100%;
+}
+
+.bar-add-search .add-search li a.active {
+  background: #0d111e;
+}
+
+.bar-add-search .add-search li a svg {
+  width: 20px;
+  fill: white;
+  margin-right: 10px;
+}
+
+.bar-add-search .add-search li a.search svg {
+  width: 24px;
+}
+
+.bar-add-search .add-search li a:hover {
+  opacity: 0.8;
+}
+
+.bar-add-search .levels {
+  margin: 0;
+  padding: 0;
+  color: white;
+}
+.bar-add-search .levels li {
+  list-style: none;
+  display: inline;
+  margin-left: 50px;
+  font-size: 16px;
+  position: relative;
+}
+
+.bar-add-search .levels li:before {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  content: "";
+  left: -24px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.bar-add-search .levels li.high:before {
+  background-color: #ff0008;
+}
+.bar-add-search .levels li.medium:before {
+  background-color: #facc2c;
+}
+.bar-add-search .levels li.low:before {
+  background-color: #2dd1ac;
+}
+.bar-add-search .levels li.wip:before {
+  background-color: #29aaef;
+}

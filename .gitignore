@@ -1,0 +1,8 @@
+node_modules
+npm-global
+out
+.settings
+.classpath
+.project
+.idea
+*.iml

@@ -1,0 +1,57 @@
+.Rectangle-6 {
+  height: 49px;
+  border-radius: 2px;
+  border: solid 1px #000000;
+  background-color: #111728;
+  color: #ffffff;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.preview {
+  color: white;
+  padding: 30px;
+  text-align: left;
+}
+
+.SMS-LRF-1 {
+  font-size: 2rem;
+  padding: 1rem 1.5rem;
+  color: #fff;
+}
+
+.table1 {
+  margin-top: 20px;
+}
+.tr {
+  margin-top: 5px;
+  width: 400px;
+  display: flex;
+  justify-content: space-around;
+}
+.name {
+  width: 40%;
+}
+.colon {
+  width: 5%;
+}
+
+.val {
+  width: 40%;
+}
+
+.dropdown {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  max-width: 40px;
+}
+
+.status {
+  margin-top: 5px;
+  width: 400px;
+  display: flex;
+  margin-left: 10px;
+  justify-content: flex-start;
+}

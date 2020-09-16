@@ -1,0 +1,109 @@
+.dashboard {
+  background-color: #0d111e;
+  transition: all 0.2s ease;
+  /* padding: 70px 0 0 85px; */
+  width: 100%;
+  height: 100%;
+}
+
+.cards {
+  justify-content: left;
+  flex-wrap: wrap;
+  display: flex;
+  padding: 30px 0;
+  margin: 0 40px;
+}
+
+.Map {
+  width: 37px;
+  height: 19px;
+  font-family: HelveticaNeue;
+  font-size: 16px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.11px;
+  color: #ffffff;
+}
+
+.Zone {
+  width: 47px;
+  height: 19px;
+  font-family: HelveticaNeue;
+  font-size: 16px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.11px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.Mask {
+  height: 46px;
+  border: solid 2px #111a2a;
+  background-color: #0f1726;
+  color: #ffffff;
+  align-items: center;
+  margin-left: 20px;
+  display: flex;
+  align-items: baseline;
+}
+
+.Mask1 {
+  margin: 20px;
+  display: flex;
+  color: #ffffff;
+  align-items: center;
+  display: flex;
+  align-items: baseline;
+}
+
+.Mask div {
+  margin-left: 20px;
+}
+
+.Mask1 div {
+  margin-left: 20px;
+}
+
+.Default {
+  width: 60px;
+  height: 18px;
+  font-family: HelveticaNeue;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #ffffff;
+}
+
+.Oval-plus {
+  width: 21px;
+  height: 21px;
+  border: solid 2px #202b3e;
+  background-color: #202b3e;
+}
+.preview-main {
+  display: flex;
+  justify-content: "center";
+}
+.tile {
+  display: flex;
+  align-items: baseline;
+}
+
+/* ******* */
+/* OPEN */
+/* ******* */
+margin: -5px -12px;
+padding: 10px 50px;
+
+.dashboard.open {
+  width: 100%;
+  /* padding: 70px 0 0 230px; */
+}

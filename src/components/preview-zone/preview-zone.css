@@ -1,0 +1,101 @@
+.preview {
+  color: white;
+  padding: 30px;
+  text-align: left;
+}
+
+.SMS-LRF-1 {
+  width: 422px;
+  height: 26px;
+  font-size: 26px;
+  font-weight: 500;
+  font-family: Roboto, sans-serif;
+  margin-left: -20px;
+  font-stretch: normal;
+  margin-left:"1px";
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #ffffff;
+}
+
+.table1 {
+  margin-top: 20px;
+}
+.tr {
+  margin-top: 10px;
+  width: 300px;
+  display: flex;
+  justify-content: space-around;
+}
+.name {
+  width: 40%;
+}
+.colon {
+  width: 5%;
+}
+
+.val {
+  width: 40%;
+}
+
+.card1 {
+  height:170px;
+  width: 370px;
+  margin-top: 30px;
+  margin-left: 10px;
+}
+
+.bottom {
+  margin-top: 5px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.number {
+  font-family: HelveticaNeue;
+  font-size: 42px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #2dd1ac;
+}
+
+.text1 {
+  font-family: HelveticaNeue;
+  font-size: 18px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #ffffff;
+}
+
+.cards {
+  display: flex;
+}
+
+.cameras {
+  margin-top: 20px;
+}
+
+.txt-30 {
+  font-size: 30px;
+}
+
+#dashboard1 {
+  display: flex;
+}
+
+.card1 {
+  width: 270px;
+  /* height: 182px; */
+  border-radius: 1px;
+  background-color: #0f1726;
+  color: white;
+  margin: 10px;
+}

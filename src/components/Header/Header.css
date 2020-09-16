@@ -1,0 +1,132 @@
+.header {
+  height: 70px;
+  background-color: #111728;
+  width: 100%;
+  color: white;
+  justify-content: space-between;
+  border-bottom: 1px solid #f3f3f342;
+  width: 100%;
+  z-index: 8;
+}
+
+.header .left,
+.header .right {
+  height: 100%;
+}
+
+.header .menu {
+  width: 85px;
+  align-self: stretch;
+  border: none;
+  background-color: #111728;
+  cursor: pointer;
+  border-right: 1px solid #f3f3f342;
+  text-align: right;
+  padding-right: 30px;
+  transition: all 0.2s ease;
+}
+
+.header .menu:hover {
+  opacity: 0.8;
+}
+
+.header .menu .arrow {
+  display: none;
+  transform: rotate(90deg);
+  width: 24px;
+}
+
+.header .menu img {
+  width: 30px;
+  pointer-events: none;
+}
+
+.header .logo {
+  margin-left: 28px;
+}
+
+.header .logo:hover {
+  opacity: 0.9;
+}
+
+.header .logo img {
+  width: 90px;
+}
+
+.header .notification {
+  background-color: #111728;
+  height: 100%;
+  width: 80px;
+  border-left: 1px solid #f3f3f342;
+  border-right: 1px solid #f3f3f342;
+  cursor: pointer;
+}
+
+.header .notification svg {
+  width: 26px;
+  fill: white;
+}
+
+.header .notification .icon {
+  position: relative;
+  margin-top: 6px;
+}
+
+.header .notification:hover .icon {
+  opacity: 0.9;
+}
+
+.header .notification .icon .count {
+  position: absolute;
+  background: #2dd1ac;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  right: -8px;
+  top: -9px;
+  font-size: 11px;
+}
+
+.header .user {
+  background-color: #111728;
+  height: 100%;
+  padding: 0 35px;
+  cursor: pointer;
+  color: white;
+  text-decoration: none;
+}
+
+.header .user .pic {
+  width: 36px;
+}
+
+.header .user .arrow {
+  width: 17px;
+}
+
+.header .user .user-name {
+  font-size: 14px;
+  margin: 0 13px 0 10px;
+}
+
+.header .user:hover .arrow,
+.header .user:hover .pic,
+.header .user:hover .user-name {
+  opacity: 0.9;
+}
+
+/* ******* */
+/* OPEN */
+/* ******* */
+
+.header.open .menu {
+  width: 230px;
+}
+
+.header.open .menu .lines {
+  display: none;
+}
+
+.header.open .menu .arrow {
+  display: inline-block;
+}

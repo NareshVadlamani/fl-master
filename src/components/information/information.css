@@ -1,0 +1,79 @@
+.MuiFormLabel-root {
+  color: #ffffff !important;
+}
+
+.MuiInputBase-root {
+  border: 0 !important;
+  border-bottom: 1px solid #5f5d70 !important;
+  width: 400px !important;
+  color: #ffffff !important;
+}
+
+.MuiFormControl-root {
+  margin-top: 15px !important;
+}
+
+.hover-1:hover {
+  cursor: pointer;
+}
+
+.hover-1 {
+  width: 78px;
+  border: solid 1px #1a2747;
+  height: 26px;
+  display: flex;
+  opacity: 0.8;
+  align-items: center;
+  border-radius: 5px;
+  justify-content: center;
+  margin-right: 5px;
+}
+
+.hover-1:link {
+  background-color: red;
+}
+
+/* visited link */
+.hover-1:visited {
+  background-color: green;
+}
+
+/* mouse over link */
+.hover-1:hover {
+  background-color: blue;
+}
+
+/* selected link */
+.hover-1:active {
+  background-color: #1a2747;
+}
+
+.MuiInputBase-root.MuiInput-root.MuiInput-underline {
+  width: 100% !important;
+}
+.MuiFormControl-root,
+.MuiInputBase-root {
+  width: 100% !important;
+}
+
+.radio-grp {
+  color: white;
+  margin: 20px 0;
+}
+.radio-grp h3 {
+  color: white;
+}
+
+.hover-1,
+.hover-1 a {
+  color: white;
+}
+
+[class^="makeStyles-right"] > div {
+  background-color: #0d111e !important;
+}
+.MuiTypography-root.MuiTypography-h6 {
+  font-size: 22px;
+  font-weight: normal;
+  margin-bottom: 20px;
+}
