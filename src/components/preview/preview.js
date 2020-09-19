@@ -23,10 +23,12 @@ import SecludedArea from "../assets/Secluded-area.png";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import Axios from "axios";
 
 import dashboardImg from "../assets/dashboard.jpeg";
 
-export function Preview({ stateData, history }) {
+export function Preview(props) {
+  const { stateData, history } = props;
   const [zone, setZone] = useState(stateData.zone);
   const [camera, setCamera] = useState(stateData.camera);
   const [rules, setRules] = useState(stateData.rules);
@@ -41,7 +43,23 @@ export function Preview({ stateData, history }) {
   // const { setValue, value, ...rest } = props;
   const classes = useStyles();
   const onSubmit = () => {
-    history.push("/dashboard");
+    const { zone_id, name, unit_id, hod_user_id, shift_ids, severity } = zone;
+    Axios.post(
+      `https://qcaefqcyp9.execute-api.ap-south-1.amazonaws.com/prod/updatezone`,
+      {
+        zone_id,
+        name,
+        unit_id,
+        hod_user_id,
+        shift_ids,
+        severity,
+      }
+    )
+      .then((res) => {
+        history.push("/dashboard");
+        console.log("aaa", { res: res.data });
+      })
+      .catch((err) => {});
   };
   return (
     <Wrapper>
@@ -211,7 +229,7 @@ export function Preview({ stateData, history }) {
         </Grid>
       </div>
       <ButtonOuter>
-        <Button href="/dashboard" style={{ color: "white" }}>
+        <Button onClick={() => onSubmit()} style={{ color: "white" }}>
           Submit
         </Button>
       </ButtonOuter>

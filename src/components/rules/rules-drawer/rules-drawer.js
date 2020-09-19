@@ -60,7 +60,7 @@ export function RuleDrawer({
 
   const counthandler = (info) => {
     console.log(info);
-    console.log({data})
+    console.log({ data });
     setCount([...count, 2]);
     // setCustomNotification([])
   };
@@ -143,7 +143,7 @@ export function RuleDrawer({
   };
 
   const handleSeverity = (severity) => {
-    let value = severity.target.value
+    let value = severity.target.value;
     setSeverity(value);
   };
   return (
@@ -262,7 +262,7 @@ export function RuleDrawer({
               >
                 +
               </button>
-            Add New Notification
+              Add New Notification
             </form>
             <br style={{ marginBottom: "20px" }} />
             <div>

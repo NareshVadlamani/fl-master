@@ -16,7 +16,7 @@ import Layout from "../layout/layout";
 import PreviewZone from "../preview-zone/preview-zone";
 import Users from "../users/users";
 import WorkerManager from "../workForce";
-import UserManager from"../userManagement";
+import UserManager from "../userManagement";
 import SidePanel from "../common/panel";
 
 import NotificationDescription from "../notification/notificationDescription/notificationDescription";
@@ -69,7 +69,7 @@ function Container({ fetchNotifications, fetchZones }) {
           />
           <Route exact path="/users" component={Users} />
           <Route path="/preview-zone/:zone_id" component={PreviewZone} />
-         
+
           <Route exact path="/manage-work-force" component={WorkerManager} />
           <Route exact path="/manage-user" component={UserManager} />
           <Route

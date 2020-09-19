@@ -13,7 +13,7 @@ export const notificationsGetAllUrl = `https://qcaefqcyp9.execute-api.ap-south-1
 
 export const zonesGetAllZoneUrl = `https://qcaefqcyp9.execute-api.ap-south-1.amazonaws.com/prod/fetchzoneall`;
 
-export const hodGetAllHodUrl = `${baseUrl}/user/fetch/all/hod-users`;
+export const hodGetAllHodUrl = `https://qcaefqcyp9.execute-api.ap-south-1.amazonaws.com/prod/fetchhodsall`;
 
 export const scheduleWipUrl = `${baseUrl}/wip/create`;
 

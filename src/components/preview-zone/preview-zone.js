@@ -71,8 +71,11 @@ export function PreviewZone({
   };
 
   useEffect(() => {
-    Axios.get(
-      `http://shark-api-v2.herokuapp.com/api/zone/fetch/by-id/${zone_id}`
+    Axios.post(
+      `https://qcaefqcyp9.execute-api.ap-south-1.amazonaws.com/prod/fetchzonebyid`,
+      {
+        id: zone_id,
+      }
     )
       .then((res) => {
         console.log("Preview zone ", res.data.data);
@@ -80,15 +83,13 @@ export function PreviewZone({
       })
       .catch((err) => {});
   }, []);
-console.log('zone ===>', zone);
+  console.log("zone ===>", zone);
   return (
     <ViewZoneContainer>
       {zone ? (
         <main className={classes.content}>
           <div className="preview">
-            <span className="SMS-LRF-1">
-              {zone.name}
-            </span>
+            <span className="SMS-LRF-1">{zone.name}</span>
             <div className="preview-main">
               <div className="table1">
                 <div className="tr">
@@ -119,21 +120,55 @@ console.log('zone ===>', zone);
                 <div className="tr">
                   <div className="name">Severity</div>
                   <div className="colon">:</div>
-                  {
-                    zone.severity == "low" ? <div style = {{
-                      backgroundColor: "green", width: "46px", marginRight: "113px", borderRadius: "5px", paddingLeft: "7px"
-                    }} className="val">{zone.severity}</div> : zone.severity == "medium" ? <div className="val" style = {{
-                      backgroundColor: "yellow", width: "46px", marginRight: "113px", borderRadius: "5px", paddingLeft: "7px"
-                    }}>{zone.severity}</div> : <div className="val" style = {{
-                      backgroundColor: "red", width: "46px", marginRight: "113px", borderRadius: "5px", paddingLeft: "7px"
-                    }}>{zone.severity}</div>
-                  }
-                  
+                  {zone.severity == "low" ? (
+                    <div
+                      style={{
+                        backgroundColor: "green",
+                        width: "46px",
+                        marginRight: "113px",
+                        borderRadius: "5px",
+                        paddingLeft: "7px",
+                      }}
+                      className="val"
+                    >
+                      {zone.severity}
+                    </div>
+                  ) : zone.severity == "medium" ? (
+                    <div
+                      className="val"
+                      style={{
+                        backgroundColor: "yellow",
+                        width: "46px",
+                        marginRight: "113px",
+                        borderRadius: "5px",
+                        paddingLeft: "7px",
+                      }}
+                    >
+                      {zone.severity}
+                    </div>
+                  ) : (
+                    <div
+                      className="val"
+                      style={{
+                        backgroundColor: "red",
+                        width: "46px",
+                        marginRight: "113px",
+                        borderRadius: "5px",
+                        paddingLeft: "7px",
+                      }}
+                    >
+                      {zone.severity}
+                    </div>
+                  )}
                 </div>
                 <div className="tr">
                   <div className="name">Shifts</div>
                   <div className="colon">:</div>
-                  <div className="val">{zone.shift_names.map((shift)=>{return shift + "  "})}</div>
+                  <div className="val">
+                    {zone.shift_names.map((shift) => {
+                      return shift + "  ";
+                    })}
+                  </div>
                 </div>
               </div>
               <div style={{ marginLeft: 290 }}>

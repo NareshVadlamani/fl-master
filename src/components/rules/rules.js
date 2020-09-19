@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import {
-  Typography,
-  CardContent,
-} from "@material-ui/core";
+import { Typography, CardContent } from "@material-ui/core";
 import { useStyles } from "../styles/layoutStyles";
 import helmet from "../assets/helmet.png";
 import jacket from "../assets/Denim-jacket.png";
@@ -24,7 +21,9 @@ export default function Rules(props) {
   });
 
   React.useEffect(() => {
-    fetch("http://shark-api-v2.herokuapp.com/api/activity/fetch/all")
+    fetch(
+      "https://qcaefqcyp9.execute-api.ap-south-1.amazonaws.com/prod/fetchrulesall"
+    )
       .then((results) => results.json())
       .then((data) => {
         setState({
@@ -48,7 +47,6 @@ export default function Rules(props) {
     }
     setState({ ...state, [anchor]: open });
   };
-
 
   const list = (anchor) => (
     <RuleDrawer

@@ -14,7 +14,8 @@ import TabPanel from "../TabPanel/TabPanel";
 import styled from "styled-components";
 import { ZonesPanelsContainer, ZonesSection } from "./styles";
 
-export default function Layout({ navOpen }) {
+export default function Layout(props) {
+  const { navOpen, history } = props;
   const classes = useStyles();
   const tabClasses = customSTabtyles();
   const [value, setValue] = React.useState(0);
@@ -33,7 +34,7 @@ export default function Layout({ navOpen }) {
   return (
     <ZonesSection>
       <Header>
-        <AppBar classsName={classes.appBar} position="static">
+        <AppBar className={classes.appBar} position="static">
           <Tabs
             className={tabClasses.root}
             value={value}
@@ -70,6 +71,7 @@ export default function Layout({ navOpen }) {
             handleChange={handleChangeButton}
             setValue={setValue}
             value={value}
+            history={history}
           />
         </TabPanel>
       </ZonesPanelsContainer>

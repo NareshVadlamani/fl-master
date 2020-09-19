@@ -79,7 +79,6 @@ export const Camera = (props) => {
       camId.push(cam.camera_id);
     });
     localStorage.setItem("cameras", JSON.stringify(selectedCamera));
-    console.log("camList", camId.length);
     if (camId.length === 0 || defaultCam === null) {
       handleClickAlert();
     } else {
@@ -93,13 +92,15 @@ export const Camera = (props) => {
         created_by: "Test",
       };
       Submit(data);
-      console.log("data", camId, defaultCam);
       setValue(value + 1);
     }
   };
 
   const Submit = (data) => {
-    Axios.post("http://shark-api-v2.herokuapp.com/api/zone/camera-map", data)
+    Axios.post(
+      "https://qcaefqcyp9.execute-api.ap-south-1.amazonaws.com/prod/zonecameramap",
+      data
+    )
       .then((res) => {
         console.log("res", res);
       })
