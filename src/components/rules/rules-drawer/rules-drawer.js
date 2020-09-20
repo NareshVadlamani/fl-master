@@ -131,6 +131,15 @@ export function RuleDrawer({
     };
     updateRuleData(data, 20);
     toggleDrawer(anchor, false);
+    let rules = [];
+    const ruleData = localStorage.getItem("ruleIds");
+    if (ruleData)
+      Array.isArray(ruleData)
+        ? rules.push([...ruleData])
+        : rules.push(ruleData);
+    rules.push(data.activity_id);
+    localStorage.setItem("ruleIds", rules);
+
     alert("activity added successfully");
     Axios.post(
       "http://shark-api-v2.herokuapp.com/api/zone/activity-rule-map",

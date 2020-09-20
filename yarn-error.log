@@ -1,0 +1,89 @@
+Arguments: 
+  /home/naresh/.nvm/versions/node/v12.13.0/bin/node /usr/share/yarn/bin/yarn.js add Noty
+
+PATH: 
+  /home/naresh/.nvm/versions/node/v12.13.0/bin:/home/naresh/google-cloud-sdk/bin:/home/naresh/go/bin:/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+
+Yarn version: 
+  1.21.1
+
+Node version: 
+  12.13.0
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/Noty: Not found
+      at Request.params.callback [as _callback] (/usr/share/yarn/lib/cli.js:66947:18)
+      at Request.self.callback (/usr/share/yarn/lib/cli.js:140665:22)
+      at Request.emit (events.js:210:5)
+      at Request.<anonymous> (/usr/share/yarn/lib/cli.js:141637:10)
+      at Request.emit (events.js:210:5)
+      at IncomingMessage.<anonymous> (/usr/share/yarn/lib/cli.js:141559:12)
+      at Object.onceWrapper (events.js:299:28)
+      at IncomingMessage.emit (events.js:215:7)
+      at endReadableNT (_stream_readable.js:1183:12)
+      at processTicksAndRejections (internal/process/task_queues.js:80:21)
+
+npm manifest: 
+  {
+    "name": "jsw",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+      "@material-ui/core": "^4.11.0",
+      "@material-ui/icons": "^4.9.1",
+      "@material-ui/lab": "^4.0.0-alpha.56",
+      "@testing-library/jest-dom": "^4.2.4",
+      "@testing-library/react": "^9.5.0",
+      "@testing-library/user-event": "^7.2.1",
+      "antd": "^4.5.2",
+      "axios": "^0.19.2",
+      "install": "^0.13.0",
+      "js-cookie": "^2.2.1",
+      "lodash": "^4.17.19",
+      "material-ui-confirm": "^2.1.1",
+      "moment": "^2.27.0",
+      "node-sass": "^4.14.1",
+      "npm": "^6.14.5",
+      "react": "^16.13.1",
+      "react-beautiful-dnd": "^13.0.0",
+      "react-dom": "^16.13.1",
+      "react-hook-form": "^6.2.0",
+      "react-redux": "^7.2.0",
+      "react-router-dom": "^5.2.0",
+      "react-scripts": "3.4.1",
+      "redux": "^4.0.5",
+      "redux-thunk": "^2.3.0",
+      "reselect": "^4.0.0",
+      "styled-components": "^5.1.1"
+    },
+    "scripts": {
+      "start": "react-scripts start",
+      "build": "react-scripts build",
+      "test": "react-scripts test",
+      "eject": "react-scripts eject"
+    },
+    "eslintConfig": {
+      "extends": "react-app"
+    },
+    "browserslist": {
+      "production": [
+        ">0.2%",
+        "not dead",
+        "not op_mini all"
+      ],
+      "development": [
+        "last 1 chrome version",
+        "last 1 firefox version",
+        "last 1 safari version"
+      ]
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

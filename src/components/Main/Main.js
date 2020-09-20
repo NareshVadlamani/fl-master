@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { connect } from "react-redux";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Redirect } from "react-router-dom";
+import moment from "moment";
 import {
   appFetchNotifications,
   appFetchZonesData,
+  appFetchDailyNotifications,
 } from "../../modals/app/thunk";
 
 import Header from "../Header/Header";
@@ -24,11 +28,19 @@ import { BodySection, MainSection, SubSections } from "./styles";
 import { appSelectNotifications } from "../../modals/app/selectors";
 import SidePanelNotifications from "../notification/sidePanelNotifications";
 import NotificationBar from "../common/pushNotification";
+import { appSetPushNotifications } from "../../modals/app/actions.js";
 
-function Container({ fetchNotifications, fetchZones }) {
+function Container({
+  fetchNotifications,
+  fetchDailyNotifications,
+  fetchZones,
+}) {
   const [navOpen, setNavOpen] = useState("");
   const [notificationsOpen, setNotificationsOpen] = useState(null);
   const notifications = useSelector((state) => state.appData.notifications);
+  const dalyNotifications = useSelector(
+    (state) => state.appData.dalyNotifications
+  );
   let interval = 0;
 
   useEffect(() => {
@@ -38,8 +50,39 @@ function Container({ fetchNotifications, fetchZones }) {
     }, 5000);
   }, []);
 
+  useEffect(() => {
+    interval = setInterval(() => {
+      fetchDailyNotifications();
+    }, 900000);
+  }, []);
+
+  useEffect(() => {
+    dalyNotifications &&
+      dalyNotifications.map((not) => {
+        const { location, message, generated_time } = not;
+        toast(
+          `${location} ${message} ${moment(generated_time).format(
+            "DD/MM/YYYY, h:mm a"
+          )}`
+        );
+      });
+  }, [dalyNotifications]);
+
   return (
     <MainSection>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+      {/* Same as */}
+      <ToastContainer />
       <Header
         onMenuClick={() => setNavOpen(navOpen === "" ? "open" : "")}
         onNotificationsClick={() =>
@@ -87,12 +130,16 @@ function Container({ fetchNotifications, fetchZones }) {
   );
 }
 
-const mapStateToProps = (state) => ({
-  notifications: state.appData,
-});
+const mapStateToProps = (state) => {
+  console.log("test state ----->", state);
+  return {
+    notifications: state.appData,
+  };
+};
 
 const mapDispatchToProps = {
   fetchNotifications: appFetchNotifications,
+  fetchDailyNotifications: appFetchDailyNotifications,
   fetchZones: appFetchZonesData,
 };
 

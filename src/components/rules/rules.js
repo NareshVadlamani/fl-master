@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Typography, CardContent } from "@material-ui/core";
+import Axios from "axios";
 import { useStyles } from "../styles/layoutStyles";
 import helmet from "../assets/helmet.png";
 import jacket from "../assets/Denim-jacket.png";
@@ -15,12 +16,14 @@ import styled from "styled-components";
 export default function Rules(props) {
   const classes = useStyles();
   const [currentData, setCurrentData] = useState({});
+  const [ruleIds, setRuleIds] = useState([]);
   const [state, setState] = React.useState({
     right: false,
     data: [],
   });
 
   React.useEffect(() => {
+    localStorage.setItem("ruleIds", []);
     fetch(
       "https://qcaefqcyp9.execute-api.ap-south-1.amazonaws.com/prod/fetchrulesall"
     )
@@ -35,6 +38,13 @@ export default function Rules(props) {
   const toggleDrawer = (anchor, open, data = null, isSaved = false) => (
     event
   ) => {
+    console.log("-----", { data });
+    if (data) {
+      const ids = ruleIds;
+      ids.push(data.activity_id);
+      setRuleIds(ids);
+    }
+
     if (data) {
       data.isSelected = true;
       setCurrentData(data);
@@ -46,6 +56,25 @@ export default function Rules(props) {
       return;
     }
     setState({ ...state, [anchor]: open });
+  };
+
+  const onNextClick = () => {
+    const ruleIds = localStorage.getItem("ruleIds");
+    const zone_id = localStorage.getItem("zone_id");
+    Axios.post(
+      `https://qcaefqcyp9.execute-api.ap-south-1.amazonaws.com/prod/zonerulemap`,
+      {
+        zone_id,
+        rule_ids: Array.isArray(ruleIds) ? ruleIds : Array.of(ruleIds),
+      }
+    )
+      .then((res) => {
+        // console.log("Preview zone ", res.data.data);
+        // setZone(res.data.data);
+        localStorage.setItem("ruleIds", []);
+        props.handleChange(4);
+      })
+      .catch((err) => {});
   };
 
   const list = (anchor) => (
@@ -243,7 +272,7 @@ export default function Rules(props) {
           <Button
             className={classes.nextbutton}
             style={{ color: "white" }}
-            onClick={() => props.handleChange(4)}
+            onClick={() => onNextClick()}
           >
             Next
           </Button>

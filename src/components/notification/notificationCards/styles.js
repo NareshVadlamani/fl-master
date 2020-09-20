@@ -5,7 +5,7 @@ export const CardContainer = styled.div`
   width: 100%;
   background: #0d111e;
   padding: 0.3rem;
-  margin-bottom: 1rem;
+  // margin-bottom: 1rem;
   cursor: pointer;
 `;
 
@@ -50,11 +50,13 @@ export const DetailsWrapper = styled.div`
   color: #fff;
   display: flex;
   justify-content: center;
-  align-items: center;
-  &:first-of-type {
-    margin-right: 1rem;
-  }
+  // align-items: center;
+  align-items: stretch;
+  text-align: center;
   > svg {
     margin-right: 0.5rem;
+  }
+  > div {
+    border: 1px solid white;
   }
 `;

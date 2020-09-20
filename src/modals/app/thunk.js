@@ -9,10 +9,12 @@ import {
   scheduleWipUrl,
   zoneGetWIPdetailsUrl,
   zoneUpdateWIPUrl,
-  rolesGetAllRolesListUrl
+  rolesGetAllRolesListUrl,
+  dailyNotificationsGetAllUrl,
 } from "./api";
 import {
   appSetNotifications,
+  appSetDailyNotifications,
   appSetAvailableZones,
   appSetHodList,
   appSetPushNotifications,
@@ -77,6 +79,20 @@ export const appFetchNotifications = () => async (dispatch, getState) => {
     return notifications;
   } catch (err) {
     console.error(`failed to fetch notfications with ${err}`);
+    return [];
+  }
+};
+
+export const appFetchDailyNotifications = () => async (dispatch, getState) => {
+  console.log("---------dailyNotifications");
+  try {
+    const {
+      data: { data: dailyNotifications },
+    } = await axios.get(dailyNotificationsGetAllUrl);
+    dispatch(appSetDailyNotifications(dailyNotifications));
+    return dailyNotifications;
+  } catch (err) {
+    console.error(`failed to fetch daily notfications with ${err}`);
     return [];
   }
 };

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const getZoneDataApi =
-  "http://shark-api-v2.herokuapp.com/api/zone/create/zone-code";
+  "https://qcaefqcyp9.execute-api.ap-south-1.amazonaws.com/prod/createzonecode";
 
 export const getZoneData = async () => {
   try {

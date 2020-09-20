@@ -97,13 +97,20 @@ export default function NotificationDescription(Notification_id) {
       <ManagementSection>
         <main className={classes.content}>
           <div className="preview">
-            <span style={{ fontWeight: "bold", fontFamily: "'Roboto', sans-serif" }} className="SMS-LRF-1">
+            <span
+              style={{ fontWeight: "bold", fontFamily: "'Roboto', sans-serif" }}
+              className="SMS-LRF-1"
+            >
               Notification
             </span>
           </div>
           <img
             style={{ maxHeight: "400px", marginLeft: "20%" }}
-            src={details.resource_url != "/"  ? details.resource_url: "https://vijayanagar.s3.ap-south-1.amazonaws.com/unknownface.PNG"}
+            src={
+              details.resource_url != "/"
+                ? details.resource_url
+                : "https://vijayanagar.s3.ap-south-1.amazonaws.com/unknownface.PNG"
+            }
           ></img>
           <div className="preview">
             <Grid container style={{ height: "25%" }}>
@@ -114,7 +121,7 @@ export default function NotificationDescription(Notification_id) {
                     <div
                       style={{
                         paddingBottom: "10px",
-                        borderRight: "2px solid black"
+                        borderRight: "2px solid black",
                       }}
                     >
                       <div

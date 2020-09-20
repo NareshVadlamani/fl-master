@@ -63,10 +63,10 @@ export function Information(props) {
       name: zoneInfo.name,
       shift_ids: shiftIds,
       unit_id: zoneInfo.unit_id,
-      parent_zone_id: zoneInfo.parent_zone_id,
+      // parent_zone_id: zoneInfo.parent_zone_id,
       severity: zoneInfo.severity,
       hod_user_id: zoneInfo.hod_user_id,
-      hod_phone: zoneInfo.hod_phone,
+      // hod_phone: zoneInfo.hod_phone,
     };
     if (!data.zone_id) {
       setErrorMsg("No zone id, please refresh to get a zoneId");
@@ -80,7 +80,12 @@ export function Information(props) {
     } else if (!data.unit_id) {
       setErrorMsg("Please, select department");
       return;
-    } else if (!data.hod_user_id || !data.hod_phone) {
+    }
+    //  else if (!data.hod_user_id || !data.hod_phone) {
+    //   setErrorMsg("Please, provide HOD details", data);
+    //   return;
+    // }
+    else if (!data.hod_user_id) {
       setErrorMsg("Please, provide HOD details", data);
       return;
     }
@@ -89,7 +94,10 @@ export function Information(props) {
     console.log("***data is valid ==>");
 
     props.setZoneData(zoneInfo).then(() => {
-      Axios.put("http://shark-api-v2.herokuapp.com/api/zone/update", data)
+      Axios.post(
+        "https://qcaefqcyp9.execute-api.ap-south-1.amazonaws.com/prod/updatezone",
+        data
+      )
         .then((res) => {
           pushnotification("Zone details Updates Successfully !");
           console.log("res", res);
@@ -326,7 +334,7 @@ Information.prototype = {
 
 function mapStateToProps(state, ownProps) {
   return {
-    currentZone: state.zone,
+    currentZone: state.zone[0],
     zones: appSelectFilteredZones(state),
     hodList: appSelectHodList(state),
   };

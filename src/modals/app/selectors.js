@@ -4,6 +4,12 @@ export const appSelectNotifications = ({ appData: { notifications } }) => {
   return notifications || [];
 };
 
+export const appSelectDailyNotifications = ({
+  appData: { dailyNotifications },
+}) => {
+  return dailyNotifications || [];
+};
+
 export const appSelectPushNotification = ({
   appData: {
     pushNotification: { msg },

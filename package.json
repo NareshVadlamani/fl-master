@@ -11,6 +11,7 @@
     "@testing-library/user-event": "^7.2.1",
     "antd": "^4.5.2",
     "axios": "^0.19.2",
+    "compute-scroll-into-view": "^1.0.16",
     "install": "^0.13.0",
     "js-cookie": "^2.2.1",
     "lodash": "^4.17.19",
@@ -25,10 +26,12 @@
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
+    "react-toastify": "^6.0.8",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
-    "styled-components": "^5.1.1"
+    "styled-components": "^5.1.1",
+    "toastr": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",

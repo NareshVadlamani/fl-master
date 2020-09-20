@@ -24,14 +24,36 @@ class NotificationCard extends Component {
       severity,
       activity_name,
       default_message,
+      message,
+      notification_id,
       generated_time,
       zone_name,
+      location,
     } = this.props.notification;
     return (
-      <CardContainer onClick={this.onClickHandler}>
-        <SevierityIndicatior severity={severity}></SevierityIndicatior>
-        <DetailsBody>
-          <NotificationType>{activity_name}</NotificationType>
+      <DetailsWrapper>
+        <div style={{ flex: 1 }}>{notification_id}</div>
+        <div style={{ flex: 1 }}>{location}</div>
+        <div style={{ flex: 1 }}>{zone_name}</div>
+        <div style={{ flex: 1 }}>{message}</div>
+        <div style={{ flex: 1 }}>
+          {moment(generated_time).format("DD/MM/YYYY, h:mm a")}
+        </div>
+        <div style={{ flex: 1 }}>{severity || "low"}</div>
+      </DetailsWrapper>
+    );
+  }
+}
+
+// <CardContainer onClick={this.onClickHandler}>
+{
+  /* <SevierityIndicatior severity={severity}></SevierityIndicatior> */
+}
+{
+  /* <DetailsBody> */
+}
+{
+  /* <NotificationType>{activity_name}</NotificationType>
           <NotificationSubDetail>{default_message}</NotificationSubDetail>
           <LocationDetails>
             <DetailsWrapper>
@@ -42,11 +64,11 @@ class NotificationCard extends Component {
               <QueryBuilderIcon />
               {moment(generated_time).format("DD/MM/YYYY, h:mm a")}
             </DetailsWrapper>
-          </LocationDetails>
-        </DetailsBody>
-      </CardContainer>
-    );
-  }
+          </LocationDetails> */
+}
+{
+  /* </DetailsBody>
+      </CardContainer> */
 }
 
 export default withRouter(NotificationCard);

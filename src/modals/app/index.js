@@ -2,6 +2,7 @@ import * as types from "./types";
 
 export const initialState = {
   notifications: [],
+  dailyNotifications: [],
   pushNotification: {
     msg: null,
     timeOut: null,
@@ -16,6 +17,10 @@ export default function AppReducer(state = initialState, action) {
     case types.APP_SET_NOTIFICATIONS: {
       const { notifications } = action;
       return (state = { ...state, notifications });
+    }
+    case types.APP_SET_DAILY_NOTIFICATIONS: {
+      const { dailyNotifications } = action;
+      return (state = { ...state, dailyNotifications });
     }
     case types.APP_SET_PUSH_NOTIFICATION: {
       const { msg } = action;

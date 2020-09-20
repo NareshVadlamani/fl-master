@@ -20,6 +20,11 @@ export const appSetNotifications = (notifications) => ({
   notifications,
 });
 
+export const appSetDailyNotifications = (dailyNotifications) => ({
+  type: types.APP_SET_DAILY_NOTIFICATIONS,
+  dailyNotifications,
+});
+
 export const appSetAvailableZones = (zones) => ({
   type: types.APP_SET_AVAILABLE_ZONES,
   zones,
