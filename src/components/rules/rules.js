@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Typography, CardContent } from "@material-ui/core";
+import { connect } from "react-redux";
+
 import Axios from "axios";
 import { useStyles } from "../styles/layoutStyles";
 import helmet from "../assets/helmet.png";
@@ -13,7 +15,8 @@ import RuleDrawer from "./rules-drawer/rules-drawer";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import styled from "styled-components";
 
-export default function Rules(props) {
+export function Rules(props) {
+  const { wizardData, saveData, rules } = props;
   const classes = useStyles();
   const [currentData, setCurrentData] = useState({});
   const [ruleIds, setRuleIds] = useState([]);
@@ -21,16 +24,35 @@ export default function Rules(props) {
     right: false,
     data: [],
   });
+  console.log("test state ----->", state);
 
-  React.useEffect(() => {
+  useEffect(() => {
     localStorage.setItem("ruleIds", []);
     fetch(
       "https://qcaefqcyp9.execute-api.ap-south-1.amazonaws.com/prod/fetchrulesall"
     )
       .then((results) => results.json())
       .then((data) => {
+        debugger;
+        const rulData =
+          data &&
+          data.data &&
+          data.data.map((dt) => {
+            let selected = false;
+            rules.map((ru) => {
+              if (ru.activity_id == dt.activity_id) {
+                selected = true;
+              }
+            });
+            if (selected) {
+              dt["isSelected"] = true;
+              return dt;
+            } else {
+              return dt;
+            }
+          });
         setState({
-          data: data.data,
+          data: rulData,
         });
       });
   }, []);
@@ -61,11 +83,12 @@ export default function Rules(props) {
   const onNextClick = () => {
     const ruleIds = localStorage.getItem("ruleIds");
     const zone_id = localStorage.getItem("zone_id");
+    const ids = Array.isArray(ruleIds) ? ruleIds : Array.of(ruleIds);
     Axios.post(
       `https://qcaefqcyp9.execute-api.ap-south-1.amazonaws.com/prod/zonerulemap`,
       {
         zone_id,
-        rule_ids: Array.isArray(ruleIds) ? ruleIds : Array.of(ruleIds),
+        rule_ids: ids,
       }
     )
       .then((res) => {
@@ -73,6 +96,7 @@ export default function Rules(props) {
         // setZone(res.data.data);
         localStorage.setItem("ruleIds", []);
         props.handleChange(4);
+        saveData(ids);
       })
       .catch((err) => {});
   };
@@ -289,6 +313,16 @@ export default function Rules(props) {
     </Wrapper>
   );
 }
+
+function mapStateToProps(state, ownProps) {
+  return {
+    rules: state.rules,
+  };
+}
+
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Rules);
 
 const Wrapper = styled.div`
   ${"" /* background: #f00; */}

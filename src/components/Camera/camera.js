@@ -22,11 +22,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 export const Camera = (props) => {
-  const { setValue, value } = props;
+  const { wizardData, saveData, setValue, value } = props;
   const classes = useStyles();
   const [allCamera, setAllCamera] = useState([]);
   const [selectedCamera, setSelectedCamList] = useState([]);
   const [result, setResult] = useState([]);
+  console.log("----result setSelectedCamList", { selectedCamera, result });
   const [msg, setMsg] = useState("");
   const [defaultCam, setDefaultCam] = useState(0);
 
@@ -54,17 +55,39 @@ export const Camera = (props) => {
   useEffect(() => {
     Axios.get(
       "https://qcaefqcyp9.execute-api.ap-south-1.amazonaws.com/prod/fetchcamerasall"
-    )
-      .then((res) => {
-        setAllCamera(res.data.data);
-        setResult(res.data.data);
-        // setLoad(true);
-      })
-      .catch((err) => {
-        // setError(err.message);
-        // setLoad(true);
-      });
+    ).then((res) => {
+      setResult(res.data.data);
+      setAllCamera(res.data.data);
+    });
   }, []);
+
+  useEffect(() => {
+    console.log("wizard", wizardData);
+    if (
+      wizardData &&
+      wizardData.camera &&
+      wizardData.camera.camera_id &&
+      wizardData.camera.camera_id.length > 0
+    ) {
+      updateSelectedCamps(wizardData.camera.camera_id);
+    }
+  }, [allCamera]);
+
+  const updateSelectedCamps = (ids) => {
+    const draggedCamera = result.filter(
+      ({ camera_id }) => ids.indexOf(camera_id) >= 0
+    );
+    if (!draggedCamera.length) return;
+    const cameras = [];
+    cameras.concat(selectedCamera);
+    cameras.concat(draggedCamera);
+    let updatedList = result.filter(
+      ({ camera_id }) => ids.indexOf(camera_id) < 0
+    );
+
+    setResult(updatedList);
+    setSelectedCamList([...draggedCamera]);
+  };
 
   const handleChangeSearch = (event) => {
     setResult(
@@ -107,6 +130,7 @@ export const Camera = (props) => {
       .catch((err) => {
         console.error(err);
       });
+    saveData(data);
   };
 
   const afterDragOver = (e) => {

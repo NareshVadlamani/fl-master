@@ -34,10 +34,12 @@ import {
 const { Option } = Select;
 
 export function Information(props) {
+  const { wizardData, saveData, currentZone } = props;
   const [zoneInfo, setZoneInfo] = useState(
-    props.currentZone || { shift_ids: [] }
+    () => currentZone || wizardData.zone
   );
-  const [shiftIds, setShiftIds] = useState([]);
+  console.log("zoneInfo", { zoneInfo, currentZone, wizardData });
+  const [shiftIds, setShiftIds] = useState(zoneInfo.shift_ids || []);
   const [departments, setDepartments] = useState([]);
   const [severity, setSeverity] = useState("high");
   const [errorMsg, setErrorMsg] = useState(null);
@@ -51,12 +53,23 @@ export function Information(props) {
   }, []);
 
   useEffect(() => {
+    if (currentZone) {
+      setZoneInfo(currentZone);
+    } else {
+      console.log("came indide else case", wizardData.zone);
+      setZoneInfo(wizardData.zone);
+    }
+  }, [wizardData.zone]);
+
+  useEffect(() => {
     const { fetchHods, currentZone } = props;
     setZoneInfo(currentZone);
     fetchHods();
   }, [props.currentZone]);
 
   const onsubmithandler = (event) => {
+    // props.handleChange(2);
+    // return;
     localStorage.setItem("zone_id", zoneInfo.zone_id);
     let data = {
       zone_id: zoneInfo.zone_id,
@@ -108,6 +121,7 @@ export function Information(props) {
         });
 
       props.handleChange(2);
+      saveData(zoneInfo);
     });
   };
 
@@ -138,169 +152,172 @@ export function Information(props) {
       <Heading>Zone information</Heading>
       <Content>
         <div className={classes.content}>
-          <div className={classes.left}>
-            <TextField
-              label="Zone Code"
-              style={{ width: 100 }}
-              disabled
-              onChange={(event) => handleChange(event, "zone_code")}
-              value={zoneInfo.zone_code}
-            />
+          {zoneInfo && (
+            <div className={classes.left}>
+              <TextField
+                label="Zone Code"
+                style={{ width: 100 }}
+                disabled
+                onChange={(event) => handleChange(event, "zone_code")}
+                value={zoneInfo.zone_code}
+              />
 
-            <TextField
-              style={{ width: "300px" }}
-              id="standard-basic"
-              label="Zone Name"
-              onChange={(event) => handleChange(event, "name")}
-              value={zoneInfo.name}
-            />
+              <TextField
+                style={{ width: "300px" }}
+                id="standard-basic"
+                label="Zone Name"
+                onChange={(event) => handleChange(event, "name")}
+                value={zoneInfo.name}
+              />
 
-            <FormControl
-              variant="outlined"
-              className={classes.dropdown}
-              style={{ width: "100%" }}
-            >
-              <span>Parent Zone</span>
-              <Select
-                native
-                //   value={zoneInfo.name}
-                onChange={(value) =>
-                  handleSelectChange(value, "parent_zone_id")
-                }
-                label="Zone"
-                inputProps={{
-                  name: "Zone",
-                  id: "outlined-age-native-simple",
-                }}
+              <FormControl
+                variant="outlined"
+                className={classes.dropdown}
                 style={{ width: "100%" }}
               >
-                {props.zones ? (
-                  props.zones.map((o, index) => (
-                    <Option value={o.zone_id}>
-                      {o.name ? o.name : "no name"}
-                    </Option>
-                  ))
-                ) : (
-                  <></>
-                )}
-              </Select>
-            </FormControl>
-
-            <SeveritySelection
-              color={
-                severity === "high"
-                  ? "#ff0008"
-                  : severity === "medium"
-                  ? "#facc2c"
-                  : "#2dd1ac"
-              }
-            >
-              <p>Severity</p>
-              <Radio.Group
-                onChange={(severity) => setSeverity(severity.target.value)}
-                defaultValue={severity}
-              >
-                <Radio value={"high"}>High</Radio>
-                <Radio value={"medium"}>Medium</Radio>
-                <Radio value={"low"}>Low</Radio>
-              </Radio.Group>
-            </SeveritySelection>
-            <ShiftsWrapper>
-              <ShiftText>Shifts</ShiftText>
-              <Shiftbox
-                isSelected={shiftIds.includes(129)}
-                onClick={() => {
-                  handleShiftChange(129, "shift_ids");
-                }}
-              >
-                <ShiftText>Shit A</ShiftText>
-              </Shiftbox>
-              <Shiftbox
-                isSelected={shiftIds.includes(130)}
-                onClick={() => {
-                  handleShiftChange(130, "shift_ids");
-                }}
-              >
-                <ShiftText>Shift B</ShiftText>
-              </Shiftbox>
-              <Shiftbox
-                isSelected={shiftIds.includes(131)}
-                onClick={() => {
-                  handleShiftChange(131, "shift_ids");
-                }}
-              >
-                <ShiftText>Shift C</ShiftText>
-              </Shiftbox>
-              <Shiftbox
-                isSelected={shiftIds.includes(132)}
-                onClick={() => {
-                  handleShiftChange(132, "shift_ids");
-                }}
-              >
-                <ShiftText>Gen</ShiftText>
-              </Shiftbox>
-            </ShiftsWrapper>
-            <ShiftsWrapper className={classes.dropdown}>
-              <span style={{ color: "#fff" }}>Department</span>
-              <FormControl variant="outlined" className={classes.formControl}>
+                <span>Parent Zone</span>
                 <Select
                   native
-                  style={{ width: "100%", color: "#000" }}
-                  value={zoneInfo.unit_id}
-                  onChange={(value) => handleSelectChange(value, "unit_id")}
-                  label="Department"
+                  value={zoneInfo.parent_zone_id}
+                  onChange={(value) =>
+                    handleSelectChange(value, "parent_zone_id")
+                  }
+                  label="Zone"
                   inputProps={{
-                    name: "Department",
+                    name: "Zone",
                     id: "outlined-age-native-simple",
                   }}
+                  style={{ width: "100%" }}
                 >
-                  {departments ? (
-                    departments.map((o, index) => (
-                      <Option value={o.unit_id}>{o.name}</Option>
+                  {props.zones ? (
+                    props.zones.map((o, index) => (
+                      <Option value={o.zone_id}>
+                        {o.name ? o.name : "no name"}
+                      </Option>
                     ))
                   ) : (
                     <></>
                   )}
                 </Select>
               </FormControl>
-            </ShiftsWrapper>
 
-            <ShiftsWrapper className={classes.dropdown}>
-              <span style={{ color: "#fff" }}>HOD</span>
-              <FormControl variant="outlined" className={classes.formControl}>
-                <Select
-                  native
-                  style={{ width: "100%", color: "#000" }}
-                  value={zoneInfo.hod_user_id}
-                  onChange={(value) => handleSelectChange(value, "hod_user_id")}
-                  label="Department"
-                  inputProps={{
-                    name: "Department",
-                    id: "outlined-age-native-simple",
+              <SeveritySelection
+                color={
+                  severity === "high"
+                    ? "#ff0008"
+                    : severity === "medium"
+                    ? "#facc2c"
+                    : "#2dd1ac"
+                }
+              >
+                <p>Severity</p>
+                <Radio.Group
+                  onChange={(severity) => setSeverity(severity.target.value)}
+                  defaultValue={severity}
+                >
+                  <Radio value={"high"}>High</Radio>
+                  <Radio value={"medium"}>Medium</Radio>
+                  <Radio value={"low"}>Low</Radio>
+                </Radio.Group>
+              </SeveritySelection>
+              <ShiftsWrapper>
+                <ShiftText>Shifts</ShiftText>
+                <Shiftbox
+                  isSelected={shiftIds.includes(129)}
+                  onClick={() => {
+                    handleShiftChange(129, "shift_ids");
                   }}
                 >
-                  {props.hodList ? (
-                    props.hodList.map((o, index) => (
-                      <Option value={o.user_id}>{o.name}</Option>
-                    ))
-                  ) : (
-                    <></>
-                  )}
-                </Select>
-              </FormControl>
-            </ShiftsWrapper>
-            <TextField
-              style={{ width: "300px" }}
-              id="standard-basic"
-              type="Number"
-              label="HOD Phone"
-              onChange={(event) => handleChange(event, "hod_phone")}
-              value={zoneInfo.hod_phone}
-              maxLength={10}
-            />
-            <ErrorHighlighter>{errorMsg}</ErrorHighlighter>
-          </div>
+                  <ShiftText>Shit A</ShiftText>
+                </Shiftbox>
+                <Shiftbox
+                  isSelected={shiftIds.includes(130)}
+                  onClick={() => {
+                    handleShiftChange(130, "shift_ids");
+                  }}
+                >
+                  <ShiftText>Shift B</ShiftText>
+                </Shiftbox>
+                <Shiftbox
+                  isSelected={shiftIds.includes(131)}
+                  onClick={() => {
+                    handleShiftChange(131, "shift_ids");
+                  }}
+                >
+                  <ShiftText>Shift C</ShiftText>
+                </Shiftbox>
+                <Shiftbox
+                  isSelected={shiftIds.includes(132)}
+                  onClick={() => {
+                    handleShiftChange(132, "shift_ids");
+                  }}
+                >
+                  <ShiftText>Gen</ShiftText>
+                </Shiftbox>
+              </ShiftsWrapper>
+              <ShiftsWrapper className={classes.dropdown}>
+                <span style={{ color: "#fff" }}>Department</span>
+                <FormControl variant="outlined" className={classes.formControl}>
+                  <Select
+                    native
+                    style={{ width: "100%", color: "#000" }}
+                    value={zoneInfo.unit_id}
+                    onChange={(value) => handleSelectChange(value, "unit_id")}
+                    label="Department"
+                    inputProps={{
+                      name: "Department",
+                      id: "outlined-age-native-simple",
+                    }}
+                  >
+                    {departments ? (
+                      departments.map((o, index) => (
+                        <Option value={o.unit_id}>{o.name}</Option>
+                      ))
+                    ) : (
+                      <></>
+                    )}
+                  </Select>
+                </FormControl>
+              </ShiftsWrapper>
 
+              <ShiftsWrapper className={classes.dropdown}>
+                <span style={{ color: "#fff" }}>HOD</span>
+                <FormControl variant="outlined" className={classes.formControl}>
+                  <Select
+                    native
+                    style={{ width: "100%", color: "#000" }}
+                    value={zoneInfo.hod_user_id}
+                    onChange={(value) =>
+                      handleSelectChange(value, "hod_user_id")
+                    }
+                    label="Department"
+                    inputProps={{
+                      name: "Department",
+                      id: "outlined-age-native-simple",
+                    }}
+                  >
+                    {props.hodList ? (
+                      props.hodList.map((o, index) => (
+                        <Option value={o.user_id}>{o.name}</Option>
+                      ))
+                    ) : (
+                      <></>
+                    )}
+                  </Select>
+                </FormControl>
+              </ShiftsWrapper>
+              <TextField
+                style={{ width: "300px" }}
+                id="standard-basic"
+                type="Number"
+                label="HOD Phone"
+                onChange={(event) => handleChange(event, "hod_phone")}
+                value={zoneInfo.hod_phone}
+                maxLength={10}
+              />
+              <ErrorHighlighter>{errorMsg}</ErrorHighlighter>
+            </div>
+          )}
           <div className={classes.right}>
             <Title>Selected Zone Map</Title>
             <img className={classes.rightImg} src={zone} alt="Map"></img>
@@ -334,7 +351,7 @@ Information.prototype = {
 
 function mapStateToProps(state, ownProps) {
   return {
-    currentZone: state.zone[0],
+    currentZone: state.zone[0] ? state.zone[0] : state.zone,
     zones: appSelectFilteredZones(state),
     hodList: appSelectHodList(state),
   };

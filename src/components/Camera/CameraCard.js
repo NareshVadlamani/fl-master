@@ -84,12 +84,10 @@ const CameraCard = (props) => {
                 target="https://www.youtube.com/watch?v=eqrKxDbzhbg"
               id="vlc"
             /> */}
-          <iframe
-            width="100%"
-            height="100%"
-            src={camera.video_url}
-          ></iframe>
-          <Typography style={{ color: "white", fontSize: 10 }}>{camera.name}</Typography>
+          <iframe width="100%" height="100%" src={camera.video_url}></iframe>
+          <Typography style={{ color: "white", fontSize: 10 }}>
+            {camera.name}
+          </Typography>
         </CardContent>
       </CardActionArea>
     </Card>

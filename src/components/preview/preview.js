@@ -43,23 +43,7 @@ export function Preview(props) {
   // const { setValue, value, ...rest } = props;
   const classes = useStyles();
   const onSubmit = () => {
-    const { zone_id, name, unit_id, hod_user_id, shift_ids, severity } = zone;
-    Axios.post(
-      `https://qcaefqcyp9.execute-api.ap-south-1.amazonaws.com/prod/updatezone`,
-      {
-        zone_id,
-        name,
-        unit_id,
-        hod_user_id,
-        shift_ids,
-        severity,
-      }
-    )
-      .then((res) => {
-        history.push("/dashboard");
-        console.log("aaa", { res: res.data });
-      })
-      .catch((err) => {});
+    history.push("/dashboard");
   };
   return (
     <Wrapper>
@@ -228,10 +212,19 @@ export function Preview(props) {
           })}
         </Grid>
       </div>
+
       <ButtonOuter>
-        <Button onClick={() => onSubmit()} style={{ color: "white" }}>
-          Submit
-        </Button>
+        <ButtonGroup className={classes.nextbutton}>
+          <Button
+            style={{ color: "white" }}
+            onClick={() => props.handleChange(3)}
+          >
+            Previous
+          </Button>
+          <Button onClick={() => onSubmit()} style={{ color: "white" }}>
+            Submit
+          </Button>
+        </ButtonGroup>
       </ButtonOuter>
     </Wrapper>
   );

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
@@ -20,8 +20,21 @@ export default function Layout(props) {
   const tabClasses = customSTabtyles();
   const [value, setValue] = React.useState(0);
 
+  const [wizardData, setWizardData] = useState({
+    zone: {},
+    camera: [],
+    rules: [],
+  });
+
   const handleChangeButton = (event) => {
     setValue(event);
+  };
+
+  const saveData = (data, type) => {
+    const newData = wizardData;
+    newData[type] = data;
+    setWizardData(newData);
+    console.log("data naresg", data);
   };
 
   function a11yProps(index) {
@@ -58,13 +71,26 @@ export default function Layout(props) {
           <Select handleChange={handleChangeButton} />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <Information handleChange={handleChangeButton} />
+          <Information
+            wizardData={wizardData}
+            handleChange={handleChangeButton}
+            saveData={(data) => saveData(data, "zone")}
+          />
         </TabPanel>
         <TabPanel value={value} index={2}>
-          <Camera setValue={setValue} value={value} />
+          <Camera
+            wizardData={wizardData}
+            setValue={setValue}
+            value={value}
+            saveData={(data) => saveData(data, "camera")}
+          />
         </TabPanel>
         <TabPanel value={value} index={3}>
-          <Rules handleChange={handleChangeButton} />
+          <Rules
+            wizardData={wizardData}
+            handleChange={handleChangeButton}
+            saveData={(data) => saveData(data, "rules")}
+          />
         </TabPanel>
         <TabPanel value={value} index={4}>
           <Preview

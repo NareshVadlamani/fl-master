@@ -131,7 +131,6 @@ function Container({
 }
 
 const mapStateToProps = (state) => {
-  console.log("test state ----->", state);
   return {
     notifications: state.appData,
   };
