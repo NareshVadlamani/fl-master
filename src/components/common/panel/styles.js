@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Drawer = styled.div`
   width: 60rem;
-  height: 83%;
+  height: calc(100% - 70px);
   background: #0d111e;
   position: fixed;
   bottom: 0;
