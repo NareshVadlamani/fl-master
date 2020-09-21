@@ -6,7 +6,7 @@ export const Drawer = styled.div`
   background: #0d111e;
   position: fixed;
   bottom: 0;
-  right: ${({ isPanelOpen }) => (isPanelOpen ? "0" : "-30rem")};
+  right: ${({ isPanelOpen }) => (isPanelOpen ? "0" : "-60rem")};
   opacity: ${({ isPanelOpen }) => (isPanelOpen ? 1 : 0)};
   color: white;
   transition: all 0.3s ease-in-out;

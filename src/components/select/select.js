@@ -17,6 +17,7 @@ export function Select(props) {
   // props.handleChange(2);
   const classes = useStyles();
   const nextButton = () => {
+    console.log("came to first next button");
     props.loadZoneData().then(() => {
       props.handleChange(1);
     });

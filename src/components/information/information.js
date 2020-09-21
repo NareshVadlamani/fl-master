@@ -144,6 +144,7 @@ export function Information(props) {
       updatedShiftIds.push(value);
     }
     setShiftIds([...updatedShiftIds]);
+    setZoneInfo({ ...zoneInfo, [name]: updatedShiftIds });
   };
 
   const classes = useStyles();
@@ -350,6 +351,7 @@ Information.prototype = {
 };
 
 function mapStateToProps(state, ownProps) {
+  console.log("aaaaaaaa->", state);
   return {
     currentZone: state.zone[0] ? state.zone[0] : state.zone,
     zones: appSelectFilteredZones(state),
