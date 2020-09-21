@@ -38,7 +38,6 @@ export function Information(props) {
   const [zoneInfo, setZoneInfo] = useState(
     () => currentZone || wizardData.zone
   );
-  console.log("zoneInfo", { zoneInfo, currentZone, wizardData });
   const [shiftIds, setShiftIds] = useState(zoneInfo.shift_ids || []);
   const [departments, setDepartments] = useState([]);
   const [severity, setSeverity] = useState("high");
@@ -56,7 +55,6 @@ export function Information(props) {
     if (currentZone) {
       setZoneInfo(currentZone);
     } else {
-      console.log("came indide else case", wizardData.zone);
       setZoneInfo(wizardData.zone);
     }
   }, [wizardData.zone]);
@@ -104,7 +102,6 @@ export function Information(props) {
     }
     setErrorMsg(null);
     const { pushnotification } = props;
-    console.log("***data is valid ==>");
 
     props.setZoneData(zoneInfo).then(() => {
       Axios.post(
@@ -113,7 +110,6 @@ export function Information(props) {
       )
         .then((res) => {
           pushnotification("Zone details Updates Successfully !");
-          console.log("res", res);
         })
         .catch((err) => {
           pushnotification("Failed to update Zone details !");
@@ -126,7 +122,6 @@ export function Information(props) {
   };
 
   const handleChange = (event, name) => {
-    console.log(event.target.value, name, zoneInfo);
     setZoneInfo({ ...zoneInfo, [name]: event.target.value });
   };
 
@@ -351,7 +346,6 @@ Information.prototype = {
 };
 
 function mapStateToProps(state, ownProps) {
-  console.log("aaaaaaaa->", state);
   return {
     currentZone: state.zone[0] ? state.zone[0] : state.zone,
     zones: appSelectFilteredZones(state),

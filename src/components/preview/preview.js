@@ -33,8 +33,6 @@ export function Preview(props) {
   const [camera, setCamera] = useState(stateData.camera);
   const [rules, setRules] = useState(stateData.rules);
   let temp = JSON.parse(localStorage.getItem("cameras"));
-  console.log("temp ", temp);
-  console.log("preview ", stateData.zone, stateData.camera, stateData.rules);
   useEffect(() => {
     setZone(stateData.zone);
     setCamera(temp);

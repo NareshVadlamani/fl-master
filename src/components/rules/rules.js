@@ -24,7 +24,6 @@ export function Rules(props) {
     right: false,
     data: [],
   });
-  console.log("test state ----->", state);
 
   useEffect(() => {
     localStorage.setItem("ruleIds", []);
@@ -60,7 +59,6 @@ export function Rules(props) {
   const toggleDrawer = (anchor, open, data = null, isSaved = false) => (
     event
   ) => {
-    console.log("-----", { data });
     if (data) {
       const ids = ruleIds;
       ids.push(data.activity_id);
@@ -92,7 +90,6 @@ export function Rules(props) {
       }
     )
       .then((res) => {
-        // console.log("Preview zone ", res.data.data);
         // setZone(res.data.data);
         localStorage.setItem("ruleIds", []);
         props.handleChange(4);

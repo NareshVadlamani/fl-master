@@ -38,8 +38,8 @@ function Container({
   const [navOpen, setNavOpen] = useState("");
   const [notificationsOpen, setNotificationsOpen] = useState(null);
   const notifications = useSelector((state) => state.appData.notifications);
-  const dalyNotifications = useSelector(
-    (state) => state.appData.dalyNotifications
+  const dailyNotifications = useSelector(
+    (state) => state.appData.dailyNotifications
   );
   let interval = 0;
 
@@ -51,14 +51,15 @@ function Container({
   }, []);
 
   useEffect(() => {
+    fetchDailyNotifications();
     interval = setInterval(() => {
       fetchDailyNotifications();
     }, 900000);
   }, []);
 
   useEffect(() => {
-    dalyNotifications &&
-      dalyNotifications.map((not) => {
+    dailyNotifications &&
+      dailyNotifications.map((not) => {
         const { location, message, generated_time } = not;
         toast(
           `${location} ${message} ${moment(generated_time).format(
@@ -66,7 +67,7 @@ function Container({
           )}`
         );
       });
-  }, [dalyNotifications]);
+  }, [dailyNotifications]);
 
   return (
     <MainSection>

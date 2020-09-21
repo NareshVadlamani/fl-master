@@ -34,7 +34,6 @@ export default function Layout(props) {
     const newData = wizardData;
     newData[type] = data;
     setWizardData(newData);
-    console.log("data naresg", data);
   };
 
   function a11yProps(index) {

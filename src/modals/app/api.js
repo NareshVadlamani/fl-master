@@ -9,7 +9,7 @@ export const designationsGetAllDesignationsUrl = `${baseUrl}/designation/fetch/a
 export const equipmentGetAllEquipmentUrl = `${baseUrl}/equipment/fetch/all`;
 
 export const notificationsGetAllUrl = `https://qcaefqcyp9.execute-api.ap-south-1.amazonaws.com/prod/fetchnotification`;
-export const dailyNotificationsGetAllUrl = `https://qcaefqcyp9.execute-api.ap-south-1.amazonaws.com/prod/fetchnotification`;
+export const dailyNotificationsGetAllUrl = `https://qcaefqcyp9.execute-api.ap-south-1.amazonaws.com/prod/fetchnotificationtodays`;
 
 // http://shark-api-v2.herokuapp.com/api/notification/fetch/todays
 

@@ -27,7 +27,6 @@ export const Camera = (props) => {
   const [allCamera, setAllCamera] = useState([]);
   const [selectedCamera, setSelectedCamList] = useState([]);
   const [result, setResult] = useState([]);
-  console.log("----result setSelectedCamList", { selectedCamera, result });
   const [msg, setMsg] = useState("");
   const [defaultCam, setDefaultCam] = useState(0);
 
@@ -62,7 +61,6 @@ export const Camera = (props) => {
   }, []);
 
   useEffect(() => {
-    console.log("wizard", wizardData);
     if (
       wizardData &&
       wizardData.camera &&
@@ -124,9 +122,7 @@ export const Camera = (props) => {
       "https://qcaefqcyp9.execute-api.ap-south-1.amazonaws.com/prod/zonecameramap",
       data
     )
-      .then((res) => {
-        console.log("res", res);
-      })
+      .then((res) => {})
       .catch((err) => {
         console.error(err);
       });
@@ -138,7 +134,6 @@ export const Camera = (props) => {
   };
 
   const handleDrag = (e) => {
-    console.log("handling drag =>", e.target.id);
     e.dataTransfer.setData("cameraId", e.target.id);
   };
 
