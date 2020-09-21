@@ -165,9 +165,11 @@ export function PreviewZone({
                   <div className="name">Shifts</div>
                   <div className="colon">:</div>
                   <div className="val">
-                    {zone.shift_names.map((shift) => {
-                      return shift + "  ";
-                    })}
+                    {zone &&
+                      zone.shift_names &&
+                      zone.shift_names.map((shift) => {
+                        return shift + "  ";
+                      })}
                   </div>
                 </div>
               </div>
@@ -209,31 +211,33 @@ export function PreviewZone({
               <div className="txt-30">Cameras</div>
 
               <div id="dashboard1">
-                {zone.cameras.map((card) => {
-                  return (
-                    <div className="card1">
-                      <Link
-                        to={"/preview-zone/" + card.zone_id}
-                        className="tooltip"
-                      >
-                        {/* <img className="card-img" src={dashboardImg} /> */}
-                        <iframe
-                          className="card-img"
-                          width="100%"
-                          height="100%"
-                          src={card.video_url}
-                        ></iframe>
-                        <div className="tooltiptext">{card.camera_name}</div>
-                      </Link>
-                      <div>
-                        <span style={{ fontSize: 10 }}>
-                          {card.camera_name ? card.camera_name : "SMS"}
-                        </span>
-                        <div style={{ fontSize: 10 }}>{card.ip_address}</div>
+                {zone &&
+                  zone.cameras &&
+                  zone.cameras.map((card) => {
+                    return (
+                      <div className="card1">
+                        <Link
+                          to={"/preview-zone/" + card.zone_id}
+                          className="tooltip"
+                        >
+                          {/* <img className="card-img" src={dashboardImg} /> */}
+                          <iframe
+                            className="card-img"
+                            width="100%"
+                            height="100%"
+                            src={card.video_url}
+                          ></iframe>
+                          <div className="tooltiptext">{card.camera_name}</div>
+                        </Link>
+                        <div>
+                          <span style={{ fontSize: 10 }}>
+                            {card.camera_name ? card.camera_name : "SMS"}
+                          </span>
+                          <div style={{ fontSize: 10 }}>{card.ip_address}</div>
+                        </div>
                       </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
               </div>
             </div>
             <div></div>
