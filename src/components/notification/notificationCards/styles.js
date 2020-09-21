@@ -53,10 +53,9 @@ export const DetailsWrapper = styled.div`
   // align-items: center;
   align-items: stretch;
   text-align: center;
+  padding: 10px 0px;
+
   > svg {
     margin-right: 0.5rem;
-  }
-  > div {
-    border: 1px solid white;
   }
 `;

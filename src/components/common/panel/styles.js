@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Drawer = styled.div`
-  width: 30rem;
+  width: 60rem;
   height: 83%;
   background: #0d111e;
   position: fixed;
