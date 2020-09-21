@@ -61,7 +61,7 @@ function Container({
     dailyNotifications &&
       dailyNotifications.map((not) => {
         const { location, message, generated_time } = not;
-        toast(
+        toast.info(
           `${location} ${message} ${moment(generated_time).format(
             "DD/MM/YYYY, h:mm a"
           )}`
@@ -73,17 +73,13 @@ function Container({
     <MainSection>
       <ToastContainer
         position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
+        autoClose={false}
         newestOnTop={false}
         closeOnClick
         rtl={false}
         pauseOnFocusLoss
         draggable
-        pauseOnHover
       />
-      {/* Same as */}
-      <ToastContainer />
       <Header
         onMenuClick={() => setNavOpen(navOpen === "" ? "open" : "")}
         onNotificationsClick={() =>
