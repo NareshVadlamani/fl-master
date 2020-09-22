@@ -32,7 +32,6 @@ export function Rules(props) {
     )
       .then((results) => results.json())
       .then((data) => {
-        debugger;
         const rulData =
           data &&
           data.data &&

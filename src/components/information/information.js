@@ -208,7 +208,10 @@ export function Information(props) {
               >
                 <p>Severity</p>
                 <Radio.Group
-                  onChange={(severity) => setSeverity(severity.target.value)}
+                  onChange={(e) => {
+                    setSeverity(e.target.value);
+                    handleChange(e, "severity");
+                  }}
                   defaultValue={severity}
                 >
                   <Radio value={"high"}>High</Radio>
